@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\PostRequest;
 use App\Models\Post;
 use Illuminate\Http\Request;
 
@@ -18,12 +19,9 @@ class PostController extends Controller
         //
     }
 
-    public function store(Request $request)
+    public function store(PostRequest $request)
     {
-        $validated = $request->validate([
-            'title' => 'required',
-            'content' => 'required'
-        ]);
+        $validated = $request->validated();
 
         $post = Post::create($validated);
 
@@ -40,14 +38,11 @@ class PostController extends Controller
         //
     }
 
-    public function update(Request $request, Post $post)
+    public function update(PostRequest $request, Post $post)
     {
-        $data = $request->validate([
-            'title' => 'required',
-            'content' => 'required'
-        ]);
+        $validated = $request->validated();
 
-        $post->update($data);
+        $post->update($validated);
 
         return redirect("/posts/{$post->id}");
     }
