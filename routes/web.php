@@ -18,7 +18,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::resource('post', PostController::class);
+Route::resource('posts', PostController::class);
 
 Route::get('/phpinfo', function () {
     return phpinfo();
