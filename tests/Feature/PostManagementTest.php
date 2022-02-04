@@ -98,6 +98,7 @@ class PostManagementTest extends TestCase
 
         $this->assertEquals($post->title, 'TEST TITLE');
         $this->assertEquals($post->content, 'Test Content');
+        $this->assertEquals($post->slug, 'test-title');
 
         $response->assertRedirect("/posts/{$post->id}");
     }

@@ -4,10 +4,14 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\PostRequest;
 use App\Models\Post;
-use Illuminate\Http\Request;
 
 class PostController extends Controller
 {
+    public function __construct(Post $post)
+    {
+        $this->post = $post;
+    }
+
     public function index()
     {
         $posts = Post::all();
@@ -21,9 +25,7 @@ class PostController extends Controller
 
     public function store(PostRequest $request)
     {
-        $validated = $request->validated();
-
-        $post = Post::create($validated);
+        $post = $this->post->create($request->validated());
 
         return redirect("/posts/{$post->id}");
     }
@@ -41,7 +43,6 @@ class PostController extends Controller
     public function update(PostRequest $request, Post $post)
     {
         $validated = $request->validated();
-
         $post->update($validated);
 
         return redirect("/posts/{$post->id}");
