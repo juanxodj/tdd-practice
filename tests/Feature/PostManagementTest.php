@@ -19,6 +19,11 @@ class PostManagementTest extends TestCase
 
         $response = $this->get('/post');
         $response->assertOk();
+
+        $posts = Post::all();
+
+        $response->assertViewIs('posts.index');
+        $response->assertViewHas('posts', $posts);
     }
 
     public function test_a_post_can_be_created()
