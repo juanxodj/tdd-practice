@@ -54,8 +54,9 @@ class PostManagementTest extends TestCase
 
         $post = Post::first();
 
-        $this->assertEquals($post->title, 'Test Title');
+        $this->assertEquals($post->title, 'TEST TITLE');
         $this->assertEquals($post->content, 'Test Content');
+        $this->assertEquals($post->slug, 'test-title');
 
         $response->assertRedirect("/posts/{$post->id}");
     }
@@ -88,14 +89,14 @@ class PostManagementTest extends TestCase
 
         $response = $this->put("/posts/{$post->id}", [
             'title' => 'Test Title',
-            'content' => 'Test Content'
+            'content' => 'Test Content',
         ]);
 
         $this->assertCount(1, Post::all());
 
         $post = $post->fresh();
 
-        $this->assertEquals($post->title, 'Test Title');
+        $this->assertEquals($post->title, 'TEST TITLE');
         $this->assertEquals($post->content, 'Test Content');
 
         $response->assertRedirect("/posts/{$post->id}");
