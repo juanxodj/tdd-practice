@@ -20,12 +20,12 @@ composer install
 En Laravel 8 pueden ejecutar el siguiente comando para ejecutar todos los test escritos:
 
 ```bash
-php artisan make:test
+php artisan test
 ```
 Si quieren ejecutar un test en específico deben pasarle el nombre del test:
 
 ```bash
-php artisan make:test --filter=test_a_post_can_be_created
+php artisan test --filter=test_a_post_can_be_created
 ```
 
 Que lo disfruten!
